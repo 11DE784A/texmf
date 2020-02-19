@@ -1,7 +1,7 @@
 \LoadClass{article} % Extends LaTeXs article class
 
 % Margins and page size
-\RequirePackage[a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\RequirePackage[a4paper,left=2.5cm,right=2.5cm,top=2cm,bottom=2cm]{geometry}
 
 % Typesetting: Fonts, line spacing, font size
 \RequirePackage[osf,sc]{mathpazo}
@@ -18,7 +18,6 @@
 \renewcommand\huge{\@setfontsize\huge\@xxpt{30}}
 
 % Left aligns all text
-\raggedright
 
 % Option to add roll number (for lab reports)
 \newcommand{\rollnumber}[1]{\gdef\@rollnumber{#1}}
@@ -28,14 +27,9 @@
 \def\@maketitle{%
 	\newpage
 	\vskip 2em%
-	{\textit{\LARGE \@title}}%
-	\vskip 0.4em%
-	{\textit{\large \@date}}%
-	\\
-	\flushright
-	\textit{{by \@author}}
-	\\
-	\textit{{Roll Number \@rollnumber}}
+	{\textit{\LARGE \@title} \hfill \textit{by \@author}}%
+	\vskip 0.2em%
+	{\textit{\large \@date} \hfill \textit{Roll Number \@rollnumber}}%
 	\pagestyle{plain}
 	\par}
 \makeatother
@@ -83,10 +77,9 @@
 
 \newcommand{\image}[3]{
 	\begin{figure}[htpb]
-		\begin{center}
-			\includegraphics[width=0.75\textwidth]{#1}
-			\caption{#2}
-			\label{#3}
-		\end{center}
+		\centering
+		\includegraphics[width=0.525\textwidth]{#1}
+		\caption[center]{#2}
+		\label{#3}
 	\end{figure}
 }
