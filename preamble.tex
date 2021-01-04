@@ -1,12 +1,16 @@
 %%% Packages
 \usepackage{amsmath,amssymb,amsthm}  % extended mathematics
+\usepackage{IEEEtrantools}
 \usepackage{bm}
+\usepackage{dcolumn}
 \usepackage{fancyvrb} % extended verbatim environments
 \usepackage{float}
 \usepackage{hyperref}
 \usepackage{lipsum}   % filler text
 \usepackage{multirow}
-\usepackage{units}    % non-stacked fractions and better unit spacing
+\usepackage[italicdiff]{physics}
+\usepackage{diagbox}
+%\usepackage{units}    % non-stacked fractions and better unit spacing
 \usepackage{textgreek}
 
 %%% Mathy Macros
@@ -29,14 +33,21 @@
 \DeclareMathOperator*{\lcm}{lcm}
 \DeclareMathOperator*{\argmin}{arg min}
 \DeclareMathOperator*{\argmax}{arg max}
+\DeclareMathOperator*{\sign}{sign}
+\DeclareMathOperator*{\diag}{diag}
 
-\newcommand{\cbrt}[1]{\sqrt[3]{#1}}
+% \renewcommand{\sqrt}[1]{#1^{1/2}}
+% \newcommand{\sqrtp}[1]{\sqrt{\qty(#1)}}
+% \newcommand{\sqrtb}[1]{\sqrt{\qty[#1]}}
+
 \providecommand{\half}{\frac{1}{2}}
 \providecommand{\inv}{^{-1}}
-\providecommand{\deg}{$^\circ$}
-\providecommand{\mdeg}{^\circ}
 
 \newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
 \newcommand{\ceiling}[1]{\left\lceil #1 \right\rceil}
-\newcommand{\abs}[1]{\left| #1 \right|}
-\newcommand{\inner}[2]{\left\langle #1,\ #2 \right\rangle}
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle}
+
+\providecommand{\nn}{\nonumber}
+
+% New column types
+\newcolumntype{d}[1]{D{.}{\cdot}{#1}}
