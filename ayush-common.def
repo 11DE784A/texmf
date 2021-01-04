@@ -1,10 +1,11 @@
 % Margins and page size
-\RequirePackage[a4paper,left=2.5cm,right=2.5cm,top=2cm,bottom=2cm]{geometry}
+\RequirePackage[a4paper,left=3.25cm,right=3.25cm,top=2cm,bottom=2cm]{geometry}
 
 % Typesetting: Fonts, line spacing, font size
-\RequirePackage[osf,sc]{mathpazo}
-\RequirePackage[scaled=0.90]{helvet}
-\RequirePackage[scaled=0.85]{beramono}
+\RequirePackage[bitstream-charter]{mathdesign}
+\let\circledS\undefined
+\RequirePackage{charter}
+\RequirePackage{beramono}
 
 \RequirePackage[dvipsnames,svgnames]{xcolor}
 
@@ -88,8 +89,8 @@
 \setlength\labelwidth    {\leftmargini}
 \addtolength\labelwidth{-\labelsep}
 
-\setlength{\parindent}{1.0pc}%
-\setlength{\parskip}{0pt}%
+\setlength{\parindent}{0pc}%
+\RequirePackage[parfill]{parskip}
 
 % Tighten up space between displays (e.g., a figure or table) and make
 % symmetric
@@ -97,12 +98,11 @@
 \setlength\abovedisplayskip{6pt plus 2pt minus 4pt}
 \setlength\belowdisplayskip{6pt plus 2pt minus 4pt}
 
-% Require paralist package for tighter lists
+% Require enumitem package for tighter lists
 
 \RequirePackage{enumitem}
-\setlist{itemsep=0pt,leftmargin=2em}
+\setlist{parsep=3pt,itemsep=0pt,leftmargin=2em}
 
-\setcounter{secnumdepth}{-1}
 
 % Italicize description run-in headings (instead of the default bold)
 \renewcommand*\descriptionlabel[1]{\hspace\labelsep\normalfont\em #1}
@@ -126,24 +126,23 @@
 \newcommand{\maketitlepage}[0]{%
   \cleardoublepage%
   {%
-  \sffamily%
-  \fontsize{18}{20}\selectfont\par\noindent\textcolor{darkgray}{\allcaps{\@author}}%
+  \fontsize{18}{20}\selectfont\par\noindent{\@author}%
   \vspace{11.5pc}%
-  \fontsize{28}{40}\selectfont\par\noindent\textcolor{darkgray}{\allcaps{\@title}}%
+  \fontsize{24}{36}\selectfont\par\noindent{\textit{\@title}}%
   \vfill%
-  \fontsize{14}{16}\selectfont\par\noindent{\allcaps{\@publisher}}%
+  \fontsize{16}{16}\selectfont\par\noindent{\@publisher}%
   }
   \clearpage%
 }
 \thispagestyle{empty}
 
 %%
-% Make Tuftian-style section headings and TOC formatting
+% Make section headings and TOC formatting
 
 \titleformat{\chapter}%
-  [display]% shape
+  [hang]% shape
   \relax
-  {\itshape\huge\thechapter}% label
+  {\itshape\huge\thechapter\hspace{16pt}}% label
   {0pt}% horizontal separation between label and title body
   {\huge\rmfamily\itshape}% before the title body
 
@@ -187,7 +186,7 @@
 
 % Formatting for main TOC (printed in front matter)
 % {section} [left] {above} {before w/label} {before w/o label} {filler + page} [after]
-\titlecontents{part}% FIXME
+\titlecontents{part}% 
   [0em] % distance from left margin
   {\vspace{1.5\baselineskip}\LARGE\rmfamily\itshape} % above (global formatting of entry)
   {\contentslabel{2em}} % before w/label (label = ``II'')
@@ -195,25 +194,39 @@
   {\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
 \titlecontents{chapter}%
   [0em] % distance from left margin
-  {\vspace{1.5\baselineskip}\LARGE\rmfamily\itshape} % above (global formatting of entry)
+  {\vspace{1.5\baselineskip}\Large\rmfamily\itshape} % above (global formatting of entry)
   {\hspace*{0em}\contentslabel{2em}} % before w/label (label = ``2'')
   {\hspace*{0em}} % before w/o label
-  {\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
-\titlecontents{section}% FIXME
+  {\hfill\large\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
+\titlecontents{section}% 
   [0em] % distance from left margin
-  {\vspace{0\baselineskip}\Large\rmfamily\itshape} % above (global formatting of entry)
+  {\vspace{0\baselineskip}\large\rmfamily} % above (global formatting of entry)
   {\hspace*{2em}\contentslabel{2em}} % before w/label (label = ``2.6'')
   {\hspace*{2em}} % before w/o label
-  {\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
-\titlecontents{subsection}% FIXME
+  {\hfill\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
+\titlecontents{subsection}%
   [0em] % distance from left margin
-  {\vspace{0\baselineskip}\large\rmfamily\itshape} % above (global formatting of entry)
-  {\hspace*{4em}\contentslabel{4em}} % before w/label (label = ``2.6.1'')
-  {\hspace*{4em}} % before w/o label
-  {\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
-\titlecontents{paragraph}% FIXME
-  [0em] % distance from left margin
-  {\vspace{0\baselineskip}\normalsize\rmfamily\itshape} % above (global formatting of entry)
-  {\hspace*{6em}\contentslabel{2em}} % before w/label (label = ``2.6.0.0.1'')
+  {\vspace{0\baselineskip}\large\rmfamily} % above (global formatting of entry)
+  {\hspace*{6em}\contentslabel{4em}} % before w/label (label = ``2.6.1'')
   {\hspace*{6em}} % before w/o label
-  {\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
+  {\hfill\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
+\titlecontents{paragraph}% 
+  [0em] % distance from left margin
+  {\vspace{0\baselineskip}\large\rmfamily} % above (global formatting of entry)
+  {\hspace*{8em}\contentslabel{2em}} % before w/label (label = ``2.6.0.0.1'')
+  {\hspace*{8em}} % before w/o label
+  {\hfill\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
+
+
+% Image styling: Easy command to include graphics
+\RequirePackage{graphicx} % allow embedded images
+  \graphicspath{{images/}} % set of paths to search for images
+
+\newcommand{\image}[3]{
+	\begin{figure}[htpb]
+		\centering
+		\includegraphics[width=0.525\textwidth]{#1}
+		\caption[center]{#2}
+		\label{#3}
+	\end{figure}
+}

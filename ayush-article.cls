@@ -2,53 +2,45 @@
 
 \input{ayush-common.def}
 
-% Option to add roll number (for lab reports)
-\newcommand{\rollnumber}[1]{\gdef\@rollnumber{#1}}
-
-% Custom \maketitle: includes options for title, date, author, and roll number
-\makeatletter
-\def\@maketitle{%
-	\newpage
-	\vskip 2em%
-	{\textit{\LARGE \@title} \hfill \textit{by \@author}}%
-	\vskip 0.2em%
-	{\textit{\large \@date} \hfill \textit{Roll Number \@rollnumber}}%
-	\pagestyle{plain}
-	\par}
-\makeatother
+% \RequirePackage{titling}
+% \pretitle{\begin{flushleft} \LARGE \itshape}
+% \posttitle{\end{flushleft} \vskip -0.3em}
+% \preauthor{\begin{flushleft} \large \itshape}
+% \postauthor{\end{flushleft} \vskip -0.3em}
+% \predate{\begin{flushleft} \large \itshape}
+% \postdate{\end{flushleft}}
 
 
-\renewenvironment{abstract}
-  {\begin{quotation}\if@tufte@sfsidenotes\begin{sffamily}\fi}
-  {\if@tufte@sfsidenotes\end{sffamily}\fi\end{quotation}}
+% \makeatletter
+% \renewcommand{\maketitle}{\bgroup\setlength{\parindent}{0pt}
+% 	\begin{flushleft}
+% 		{\large \itshape \@author \vskip -0.2em}
+% 		{\large \itshape \@date}
+% 	\end{flushleft}\egroup
+% 	\vskip 2.0em
+% }
+% \makeatother
 
+\titleformat{\section}%
+  [hang]% shape
+  {\normalfont\Large\itshape}% format applied to label+text
+  {\thesection}% label
+  {1em}% horizontal separation between label and title body
+  {}% before the title body
+  []% after the title body
 
-% Table styling: Easy environment for typesetting tables.
-\RequirePackage{booktabs}
-\newenvironment{easytable}[3]{%
-	\begin{table}[htpb]
-		\begin{center}
-			\caption{#2}
-			\label{#3}
-			\vspace{0.5em}
-			\begin{tabular*}{\textwidth}{c @{\extracolsep{\fill}} #1}
-			\toprule
-}{%
-			\\ \bottomrule
-			\end{tabular*}
-		\end{center}
-	\end{table}
-}
+\titleformat{\subsection}%
+  [hang]% shape
+  {\normalfont\large\itshape}% format applied to label+text
+  {\thesubsection}% label
+  {1em}% horizontal separation between label and title body
+  {}% before the title body
+  []% after the title body
 
-% Image styling: Easy command to include graphics
-\RequirePackage{graphicx} % allow embedded images
-  \graphicspath{{images/}} % set of paths to search for images
-
-\newcommand{\image}[3]{
-	\begin{figure}[htpb]
-		\centering
-		\includegraphics[width=0.525\textwidth]{#1}
-		\caption[center]{#2}
-		\label{#3}
-	\end{figure}
-}
+\titleformat{\paragraph}%
+  [runin]% shape
+  {\normalfont\itshape}% format applied to label+text
+  {\theparagraph}% label
+  {1em}% horizontal separation between label and title body
+  {}% before the title body
+  []% after the title body
