@@ -1,0 +1,232 @@
+% Margins and page size
+\RequirePackage[a4paper,left=4.00cm,right=4.00cm,top=3.25cm,bottom=3.25cm]{geometry}
+
+% Typesetting: Fonts, line spacing, font size
+\RequirePackage[bitstream-charter]{mathdesign}
+\let\circledS\undefined
+\RequirePackage{charter}
+\RequirePackage{beramono}
+
+\RequirePackage[dvipsnames,svgnames]{xcolor}
+
+% Redefine the display environments (quote, quotation, etc.)
+
+\renewenvironment{verse}
+               {\let\\\@centercr
+                \list{}{\itemsep      \z@
+                        \itemindent   -1pc%
+                        \listparindent\itemindent
+                        \rightmargin  \leftmargin
+                        \advance\leftmargin 1pc}%
+                \small%
+                \item\relax}
+               {\endlist}
+\renewenvironment{quotation}
+               {\list{}{\listparindent 1pc%
+                        \itemindent    \listparindent
+                        \rightmargin   \leftmargin
+                        \parsep        \z@ \@plus\p@}%
+                \small%
+                \item\relax\noindent\ignorespaces}
+               {\endlist}
+\renewenvironment{quote}
+               {\list{}{\rightmargin\leftmargin}%
+                \small%
+                \item\relax}
+               {\endlist}
+
+\RequirePackage{titlesec,titletoc}
+
+\renewcommand\normalsize{%
+   \@setfontsize\normalsize\@xpt{14}%
+   \abovedisplayskip 10\p@ \@plus2\p@ \@minus5\p@
+   \abovedisplayshortskip \z@ \@plus3\p@
+   \belowdisplayshortskip 6\p@ \@plus3\p@ \@minus3\p@
+   \belowdisplayskip \abovedisplayskip
+   \let\@listi\@listI}
+\normalbaselineskip=14pt
+\normalsize
+
+\renewcommand\small{%
+   \@setfontsize\small\@ixpt{12}%
+   \abovedisplayskip 8.5\p@ \@plus3\p@ \@minus4\p@
+   \abovedisplayshortskip \z@ \@plus2\p@
+   \belowdisplayshortskip 4\p@ \@plus2\p@ \@minus2\p@
+   \def\@listi{\leftmargin\leftmargini
+               \topsep 4\p@ \@plus2\p@ \@minus2\p@
+               \parsep 2\p@ \@plus\p@ \@minus\p@
+               \itemsep \parsep}%
+   \belowdisplayskip \abovedisplayskip
+}
+
+\renewcommand\footnotesize{%
+   \@setfontsize\footnotesize\@viiipt{10}%
+   \abovedisplayskip 6\p@ \@plus2\p@ \@minus4\p@
+   \abovedisplayshortskip \z@ \@plus\p@
+   \belowdisplayshortskip 3\p@ \@plus\p@ \@minus2\p@
+   \def\@listi{\leftmargin\leftmargini
+               \topsep 3\p@ \@plus\p@ \@minus\p@
+               \parsep 2\p@ \@plus\p@ \@minus\p@
+               \itemsep \parsep}%
+   \belowdisplayskip \abovedisplayskip
+}
+
+\renewcommand\scriptsize{\@setfontsize\scriptsize\@viipt\@viiipt}
+\renewcommand\tiny{\@setfontsize\tiny\@vpt\@vipt}
+\renewcommand\large{\@setfontsize\large\@xipt{15}}
+\renewcommand\Large{\@setfontsize\Large\@xiipt{16}}
+\renewcommand\LARGE{\@setfontsize\LARGE\@xivpt{18}}
+\renewcommand\huge{\@setfontsize\huge\@xxpt{30}}
+\renewcommand\Huge{\@setfontsize\Huge{24}{36}}
+
+\setlength\leftmargini   {1pc}
+\setlength\leftmarginii  {1pc}
+\setlength\leftmarginiii {1pc}
+\setlength\leftmarginiv  {1pc}
+\setlength\leftmarginv   {1pc}
+\setlength\leftmarginvi  {1pc}
+\setlength\labelsep      {.5pc}
+\setlength\labelwidth    {\leftmargini}
+\addtolength\labelwidth{-\labelsep}
+
+\setlength{\parindent}{0pc}%
+\RequirePackage[parfill]{parskip}
+
+% Tighten up space between displays (e.g., a figure or table) and make
+% symmetric
+
+\setlength\abovedisplayskip{6pt plus 2pt minus 4pt}
+\setlength\belowdisplayskip{6pt plus 2pt minus 4pt}
+
+% Require enumitem package for tighter lists
+
+\RequirePackage{enumitem}
+\setlist{parsep=3pt,itemsep=0pt,leftmargin=2em}
+
+
+% Italicize description run-in headings (instead of the default bold)
+\renewcommand*\descriptionlabel[1]{\hspace\labelsep\normalfont\em #1}
+
+% Used for doublespacing, and other linespacing
+\RequirePackage{setspace}
+
+\RequirePackage{letterspace}
+\RequirePackage{microtype}
+\RequirePackage{textcase} % provides \MakeTextUppercase and \MakeTextLowercase
+
+\newcommand{\allcapsspacing}[1]{\textls[200]{#1}}%
+\newcommand{\smallcapsspacing}[1]{\textls[50]{#1}}%
+\newcommand{\allcaps}[1]{\allcapsspacing{\MakeTextUppercase{#1}}}
+\newcommand{\smallcaps}[1]{\smallcapsspacing{\MakeTextLowercase{#1}}}
+
+\newcommand{\publisher}[1]{\gdef\@publisher{#1}}
+\newcommand{\thedate}{\today}
+
+% Produces a title page
+\newcommand{\maketitlepage}[0]{%
+  \cleardoublepage%
+  {%
+  \fontsize{18}{20}\selectfont\par\noindent{\@author}%
+  \vspace{11.5pc}%
+  \fontsize{24}{36}\selectfont\par\noindent{\textit{\@title}}%
+  \vfill%
+  \fontsize{16}{16}\selectfont\par\noindent{\@publisher}%
+  }
+  \clearpage%
+}
+\thispagestyle{empty}
+
+%%
+% Make section headings and TOC formatting
+
+\titleformat{\chapter}%
+  [hang]% shape
+  \relax
+  {\itshape\huge\thechapter\hspace{16pt}}% label
+  {0pt}% horizontal separation between label and title body
+  {\huge\rmfamily\itshape}% before the title body
+
+\titleformat{\section}%
+  [hang]% shape
+  {\normalfont\Large\itshape}% format applied to label+text
+  {\thesection}% label
+  {1em}% horizontal separation between label and title body
+  {}% before the title body
+  []% after the title body
+
+\titleformat{\subsection}%
+  [hang]% shape
+  {\normalfont\large\itshape}% format applied to label+text
+  {\thesubsection}% label
+  {1em}% horizontal separation between label and title body
+  {}% before the title body
+  []% after the title body
+
+\titleformat{\paragraph}%
+  [runin]% shape
+  {\normalfont\itshape}% format applied to label+text
+  {\theparagraph}% label
+  {1em}% horizontal separation between label and title body
+  {}% before the title body
+  []% after the title body
+
+\titlespacing*{\chapter}{0pt}{50pt}{40pt}
+\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+\titlespacing*{\subsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus.2ex}
+
+% Subsubsection and following section headings shouldn't be used.
+% See Bringhurst's _The Elements of Typography_, section 4.2.2.
+\renewcommand\subsubsection{%
+  \errmessage{\string\subsubsection is undefined by this class.}
+}
+
+\renewcommand\subparagraph{%
+  \errmessage{\string\subparagraph is undefined by this class.}
+}
+
+% Formatting for main TOC (printed in front matter)
+% {section} [left] {above} {before w/label} {before w/o label} {filler + page} [after]
+\titlecontents{part}% 
+  [0em] % distance from left margin
+  {\vspace{1.5\baselineskip}\LARGE\rmfamily\itshape} % above (global formatting of entry)
+  {\contentslabel{2em}} % before w/label (label = ``II'')
+  {} % before w/o label
+  {\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
+\titlecontents{chapter}%
+  [0em] % distance from left margin
+  {\vspace{1.5\baselineskip}\Large\rmfamily\itshape} % above (global formatting of entry)
+  {\hspace*{0em}\contentslabel{2em}} % before w/label (label = ``2'')
+  {\hspace*{0em}} % before w/o label
+  {\hfill\large\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
+\titlecontents{section}% 
+  [0em] % distance from left margin
+  {\vspace{0\baselineskip}\large\rmfamily} % above (global formatting of entry)
+  {\hspace*{2em}\contentslabel{2em}} % before w/label (label = ``2.6'')
+  {\hspace*{2em}} % before w/o label
+  {\hfill\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
+\titlecontents{subsection}%
+  [0em] % distance from left margin
+  {\vspace{0\baselineskip}\large\rmfamily} % above (global formatting of entry)
+  {\hspace*{6em}\contentslabel{4em}} % before w/label (label = ``2.6.1'')
+  {\hspace*{6em}} % before w/o label
+  {\hfill\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
+\titlecontents{paragraph}% 
+  [0em] % distance from left margin
+  {\vspace{0\baselineskip}\large\rmfamily} % above (global formatting of entry)
+  {\hspace*{8em}\contentslabel{2em}} % before w/label (label = ``2.6.0.0.1'')
+  {\hspace*{8em}} % before w/o label
+  {\hfill\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
+
+
+% Image styling: Easy command to include graphics
+\RequirePackage{graphicx} % allow embedded images
+  \graphicspath{{images/}} % set of paths to search for images
+
+\newcommand{\image}[3]{
+	\begin{figure}[htpb]
+		\centering
+		\includegraphics[width=0.525\textwidth]{#1}
+		\caption[center]{#2}
+		\label{#3}
+	\end{figure}
+}
