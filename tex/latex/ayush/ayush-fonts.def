@@ -1,0 +1,8 @@
+\newcommand{\ayushfont}{}
+
+\DeclareOption{computermodern}{\renewcommand{\ayushfont}{computermodern}}
+\DeclareOption{charter}{\renewcommand{\ayushfont}{charter}}
+\DeclareOption{firasans}{\renewcommand{\ayushfont}{firasans}}
+\DeclareOption{ebgaramond}{\renewcommand{\ayushfont}{ebgaramond}}
+\ProcessOptions\relax
+
